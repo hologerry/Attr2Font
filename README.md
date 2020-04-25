@@ -33,11 +33,11 @@ Font design is now still considered as an exclusive privilege of professional de
 
 ### Datasets
 
-[Download]() the datasets and put it into the `data/`:
+[Download](https://disk.pku.edu.cn:443/link/984852AA48580C84B1A63467390DAB69) the datasets and put it into the `data/`:
 ```
 data/
     explor_all/
-        images/
+        image/
         attributes.txt/
 ```
 | This dataset is constructed by O’Donovan et al. *Exploratory Font Selection Using Crowdsourced Attributes*. TOG 2014
