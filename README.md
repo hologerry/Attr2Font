@@ -11,6 +11,9 @@ Font design is now still considered as an exclusive privilege of professional de
 ## Model Architecture
 ![Architecture](img/att_arch.png)
 
+## Demostration
+![Demo](img/Attr2Font_demo.gif)
+| This demo is deployed on CPU, so it seems to be slow to inference.
 
 ## Prerequisites
 
