@@ -14,18 +14,16 @@ def rreplace(s, old, new, occurrence):
 
 class ImageAttr(data.Dataset):
     """Dataset class for the ImageAttr dataset."""
-    def __init__(self, image_dir, attr_path, selected_attrs, transform, mode,
-                 all_attrs=True, binary=False, n_style=4,
+    def __init__(self, image_dir, attr_path, transform, mode,
+                 binary=False, n_style=4,
                  char_num=52, unsuper_num=968, train_num=120, val_num=28):
         """Initialize and preprocess the ImageAttr dataset."""
         self.image_dir = image_dir
         self.attr_path = attr_path
-        self.selected_attrs = selected_attrs
         self.n_style = n_style
 
         self.transform = transform
         self.mode = mode
-        self.all_attrs = all_attrs
         self.binary = binary
 
         self.super_train_dataset = []
@@ -73,19 +71,11 @@ class ImageAttr(data.Dataset):
             font_class = int(i / self.char_num)
 
             attr_value = []
-            if self.all_attrs:
-                for val in values:
-                    if self.binary:
-                        attr_value.append(val == '1')
-                    else:
-                        attr_value.append(eval(val) / 100.0)
-            else:
-                for attr_name in self.selected_attrs:
-                    idx = self.attr2idx[attr_name]
-                    if self.binary:
-                        attr_value.append(values[idx] == '1')
-                    else:
-                        attr_value.append(eval(values[idx]) / 100.0)
+            for val in values:
+                if self.binary:
+                    attr_value.append(val == '1')
+                else:
+                    attr_value.append(eval(val) / 100.0)
 
             # print(filename, char_class, font_class, attr_value)
 
@@ -204,9 +194,9 @@ class ImageAttr(data.Dataset):
         return self.num_images
 
 
-def get_loader(image_dir, attr_path, selected_attrs, image_size=256,
+def get_loader(image_dir, attr_path, image_size=256,
                batch_size=16, dataset_name='explor_all', mode='train', num_workers=8,
-               all_attrs=True, binary=False, n_style=4,
+               binary=False, n_style=4,
                char_num=52, unsuper_num=968, train_num=120, val_num=28):
     """Build and return a data loader."""
     transform = []
@@ -216,8 +206,8 @@ def get_loader(image_dir, attr_path, selected_attrs, image_size=256,
     transform = T.Compose(transform)
 
     if dataset_name == 'explor_all':
-        dataset = ImageAttr(image_dir, attr_path, selected_attrs, transform,
-                            mode, all_attrs, binary, n_style,
+        dataset = ImageAttr(image_dir, attr_path, transform,
+                            mode, binary, n_style,
                             char_num=52, unsuper_num=968,
                             train_num=120, val_num=28)
     data_loader = data.DataLoader(dataset=dataset,

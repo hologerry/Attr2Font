@@ -41,12 +41,12 @@ def train(opts):
     attribute_path = os.path.join(opts.data_root, opts.dataset_name, "attributes.txt")
 
     # Dataloader
-    train_dataloader = get_loader(image_dir, attribute_path, opts.selected_attrs,
+    train_dataloader = get_loader(image_dir, attribute_path,
                                   dataset_name=opts.dataset_name,
                                   image_size=opts.img_size,
                                   n_style=opts.n_style,
                                   batch_size=opts.batch_size, binary=False)
-    test_dataloader = get_loader(image_dir, attribute_path, opts.selected_attrs,
+    test_dataloader = get_loader(image_dir, attribute_path,
                                  dataset_name=opts.dataset_name,
                                  image_size=opts.img_size,
                                  n_style=opts.n_style, batch_size=8,
@@ -360,7 +360,7 @@ def test(opts):
     image_dir = os.path.join(opts.data_root, opts.dataset_name, "image")
     attribute_path = os.path.join(opts.data_root, opts.dataset_name, "attributes.txt")
 
-    test_dataloader = get_loader(image_dir, attribute_path, opts.selected_attrs,
+    test_dataloader = get_loader(image_dir, attribute_path,
                                  dataset_name=opts.dataset_name,
                                  image_size=opts.img_size,
                                  n_style=opts.n_style, batch_size=52,
@@ -412,7 +412,7 @@ def interp(opts):
     image_dir = os.path.join(opts.data_root, opts.dataset_name, "image")
     attribute_path = os.path.join(opts.data_root, opts.dataset_name, "attributes.txt")
 
-    test_dataloader = get_loader(image_dir, attribute_path, opts.selected_attrs,
+    test_dataloader = get_loader(image_dir, attribute_path,
                                  dataset_name=opts.dataset_name,
                                  image_size=opts.img_size,
                                  n_style=opts.n_style, batch_size=52,
