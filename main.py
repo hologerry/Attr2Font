@@ -106,7 +106,7 @@ def train(opts):
     attrid = attrid.repeat(opts.batch_size, 1)
 
     for epoch in range(opts.init_epoch, opts.n_epochs+1):
-        for i, batch in enumerate(train_dataloader):
+        for batch_idx, batch in enumerate(train_dataloader):
             img_A = batch['img_A'].to(device)
             attr_A_data = batch['attr_A'].to(device)
             fontembd_A = batch['fontembed_A'].to(device)
@@ -201,13 +201,13 @@ def train(opts):
             loss_D.backward(retain_graph=True)
             optimizer_D.step()
 
-            batches_done = epoch * len(train_dataloader) + i
-            batches_left = opts.n_epochs * len(train_dataloader) - batches_done
+            batches_done = (epoch - opts.init_epoch) * len(train_dataloader) + batch_idx
+            batches_left = (opts.n_epochs - opts.init_epoch) * len(train_dataloader) - batches_done
             time_left = datetime.timedelta(seconds=batches_left*(time.time() - prev_time))
             prev_time = time.time()
 
             message = (
-                f"Epoch: {epoch}/{opts.n_epochs}, Batch: {i}/{len(train_dataloader)}, ETA: {time_left}, "
+                f"Epoch: {epoch}/{opts.n_epochs}, Batch: {batch_idx}/{len(train_dataloader)}, ETA: {time_left}, "
                 f"D loss: {loss_D.item():.6f}, G loss: {loss_G.item():.6f}, "
                 f"loss_pixel: {loss_pixel.item():.6f}, "
                 f"loss_adv: {loss_GAN.item():.6f}, "
@@ -239,7 +239,6 @@ def train(opts):
 
                         val_img_B = val_batch['img_B'].to(device)
 
-                        val_attr_A_intensity = val_batch['attr_A'].to(device)
                         val_attr_A_intensity = attr_unsuper_tolearn(val_fontembed_A)
                         val_attr_A_intensity = val_attr_A_intensity.view(val_attr_A_intensity.size(0), val_attr_A_intensity.size(2))
                         val_attr_A_intensity = torch.sigmoid(3*val_attr_A_intensity)  # convert to [0, 1]
@@ -258,8 +257,7 @@ def train(opts):
                         val_intensity = val_attr_B_intensity - val_attr_A_intensity
                         val_attr = val_attr_B - val_attr_A
 
-                        val_fake_B, _ = generator(val_img_A, val_styles_A,
-                                                  val_intensity, val_attr)
+                        val_fake_B, _ = generator(val_img_A, val_styles_A, val_intensity, val_attr)
 
                         val_l1_loss += criterion_pixel(val_fake_B, val_img_B)
 
@@ -269,7 +267,7 @@ def train(opts):
 
                     val_l1_loss = val_l1_loss / 20
                     val_msg = (
-                        f"Epoch: {epoch}/{opts.n_epochs}, Batch: {i}/{len(train_dataloader)}, "
+                        f"Epoch: {epoch}/{opts.n_epochs}, Batch: {batch_idx}/{len(train_dataloader)}, "
                         f"L1: {val_l1_loss.item(): .6f}"
                     )
                     val_logfile.write(val_msg + "\n")
@@ -314,7 +312,6 @@ def test_one_epoch(opts, test_logfile, test_epoch,
 
             test_img_B = test_batch['img_B'].to(device)
 
-            test_attr_A_intensity = test_batch['attr_A'].to(device)
             test_attr_A_intensity = attr_unsuper_tolearn(test_fontembed_A)
             test_attr_A_intensity = test_attr_A_intensity.view(test_attr_A_intensity.size(0), test_attr_A_intensity.size(2))  # noqa
             test_attr_A_intensity = torch.sigmoid(3*test_attr_A_intensity)  # convert to [0, 1]
@@ -459,17 +456,12 @@ def interp(opts):
             test_styles_A = test_batch['styles_A'].to(device)
 
             test_img_B = test_batch['img_B'].to(device)
-            test_fontembed_B = test_batch['fontembed_B'].to(device)
 
-            test_attr_A_intensity = test_batch['attr_A'].to(device)
             test_attr_A_intensity = attr_unsuper_tolearn(test_fontembed_A)
             test_attr_A_intensity = test_attr_A_intensity.view(test_attr_A_intensity.size(0), test_attr_A_intensity.size(2))  # noqa
             test_attr_A_intensity = torch.sigmoid(3*test_attr_A_intensity)  # convert to [0, 1]
 
             test_attr_B_intensity = test_batch['attr_B'].to(device)
-            test_attr_B_intensity = attr_unsuper_tolearn(test_fontembed_B)
-            test_attr_B_intensity = test_attr_B_intensity.view(test_attr_B_intensity.size(0), test_attr_B_intensity.size(2))  # noqa
-            test_attr_B_intensity = torch.sigmoid(3*test_attr_B_intensity)  # convert to [0, 1]
 
             test_attr_raw_A = attribute_embed(test_attrid)
             test_attr_raw_B = attribute_embed(test_attrid)
@@ -505,7 +497,7 @@ def interp(opts):
             for alpha in range(opts.interp_cnt):
                 alpha /= opts.interp_cnt - 1
                 one_batch_random = torch.rand_like(test_attr_B_intensity[0]).unsqueeze(0).to(device)
-                print(one_batch_random.size())
+
                 test_intensity_B_beta = one_batch_random.repeat(52, 1).to(device)
                 test_intensity_B_beta_u = test_intensity_B_beta.unsqueeze(-1)
                 test_attr_B_beta = test_intensity_B_beta_u * test_attr_raw_B.clone().detach()

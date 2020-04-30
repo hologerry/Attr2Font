@@ -38,6 +38,10 @@ class ImageAttr(data.Dataset):
         self.train_font_num = train_num
         self.val_font_num = val_num
 
+        self.test_super_unsuper = {}
+        for super_font in range(self.train_font_num+self.val_font_num):
+            self.test_super_unsuper[super_font] = random.randint(0, self.unsupervised_font_num - 1)
+
         self.char_idx_offset = 10
 
         self.chars = [c for c in range(self.char_idx_offset, self.char_idx_offset+self.char_num)]
@@ -93,7 +97,7 @@ class ImageAttr(data.Dataset):
         # dataset = self.super_train_dataset if self.mode == 'train' else self.super_test_dataset
 
         if self.mode == 'train':
-            if index < (self.train_font_num * self.char_num):
+            if index < len(self.super_train_dataset):
                 filename_A, charclass_A, fontclass_A, attr_A = self.super_train_dataset[index]
                 label_A = 1.0
                 font_embed_A = self.unsupervised_font_num  # dummy id 968
@@ -115,7 +119,7 @@ class ImageAttr(data.Dataset):
 
             else:
                 # get A from unsupervise train !!
-                index = index - 2 * (self.train_font_num * self.char_num)
+                index = index - len(self.super_train_dataset)
                 filename_A, charclass_A, fontclass_A, attr_A = self.unsuper_train_dataset[index]
                 label_A = 0.0
                 font_embed_A = fontclass_A - self.train_font_num - self.val_font_num
@@ -138,8 +142,10 @@ class ImageAttr(data.Dataset):
         else:
             # load the random one from unsupervise data as the reference aka A
             # unsuper to super
-            char_index_unsuper = index % self.char_num + self.char_num * random.randint(0, self.train_font_num - 1)
-            filename_A, charclass_A, fontclass_A, attr_A = self.super_train_dataset[char_index_unsuper]
+            font_index_super = index % self.char_num + self.train_font_num
+            font_index_unsuper = self.test_super_unsuper[font_index_super]
+            char_index_unsuper = index % self.char_num + self.char_num * font_index_unsuper
+            filename_A, charclass_A, fontclass_A, attr_A = self.unsuper_train_dataset[char_index_unsuper]
             label_A = 0.0
             font_embed_A = fontclass_A - self.train_font_num - self.val_font_num  # convert to [0, 967]
 
