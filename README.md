@@ -28,7 +28,7 @@ Font design is now still considered as an exclusive privilege of professional de
    git clone -b master --single-branch https://github.com/hologerry/Attr2Font
    cd Attr2Font
    ```
-3. Download the offical pre-trained vgg19 model: [vgg19-dcbb9e9d.pth]('https://download.pytorch.org/models/vgg19-dcbb9e9d.pth'), and put it under this project root folder
+3. Download the offical pre-trained vgg19 model: [vgg19-dcbb9e9d.pth](https://download.pytorch.org/models/vgg19-dcbb9e9d.pth), and put it under this project root folder
 
 
 ### Datasets
