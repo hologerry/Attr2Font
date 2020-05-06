@@ -36,7 +36,7 @@ Font design is now still considered as an exclusive privilege of professional de
 
 ### Datasets
 
-[Download](https://disk.pku.edu.cn:443/link/984852AA48580C84B1A63467390DAB69) the datasets and put it into the `data/`:
+Download the dataset from [PKU Disk](https://disk.pku.edu.cn:443/link/984852AA48580C84B1A63467390DAB69), [Google Drive](https://drive.google.com/open?id=1P2DbNbVw4Q__WcV1YdzE7zsDKilmd3pO) or [Mega](https://mega.nz/file/zoYmyIxZ#1DqZjgu21AAJ1nenruYQPo2cS0Xjw4dINAjj3iTmfr8) and put it into the `data/`:
 ```
 data/
     explor_all/
