@@ -142,7 +142,7 @@ class ImageAttr(data.Dataset):
         else:
             # load the random one from unsupervise data as the reference aka A
             # unsuper to super
-            font_index_super = index / self.char_num + self.train_font_num
+            font_index_super = index // self.char_num + self.train_font_num
             font_index_unsuper = self.test_super_unsuper[font_index_super]
             char_index_unsuper = index % self.char_num + self.char_num * font_index_unsuper
             filename_A, charclass_A, fontclass_A, attr_A = self.unsuper_train_dataset[char_index_unsuper]
