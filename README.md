@@ -11,9 +11,17 @@ Font design is now still considered as an exclusive privilege of professional de
 ## Model Architecture
 ![Architecture](img/att_arch.png)
 
-## Demostration
+## Demonstration
 ![Demo](img/Attr2Font_demo.gif)
 | This demo is deployed on CPU, so it seems to be slow to inference.
+
+
+## Results
+Comparison of StarGAN and StarGAN+AAM on CelebA. (We put these results here due to license issue)
+
+![some](img/stargan_aam.png)
+
+![more](img/sm_stargan_aam.png)
 
 ## Prerequisites
 
@@ -31,7 +39,7 @@ Font design is now still considered as an exclusive privilege of professional de
    git clone -b master --single-branch https://github.com/hologerry/Attr2Font
    cd Attr2Font
    ```
-3. Download the offical pre-trained vgg19 model: [vgg19-dcbb9e9d.pth](https://download.pytorch.org/models/vgg19-dcbb9e9d.pth), and put it under this project root folder
+3. Download the official pre-trained vgg19 model: [vgg19-dcbb9e9d.pth](https://download.pytorch.org/models/vgg19-dcbb9e9d.pth), and put it under this project root folder
 
 
 ### Datasets
