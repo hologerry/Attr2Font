@@ -3,6 +3,8 @@
 
 This is the official PyTorch implementation of the Attribute2Font: Creating Fonts You Want From Attributes.
 
+[Research Gate](https://www.researchgate.net/publication/341423467_Attribute2Font_Creating_Fonts_You_Want_From_Attributes/comments)
+
 ![Teaser](img/teaser.png)
 
 ## Abstract
