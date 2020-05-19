@@ -3,9 +3,13 @@
 
 This is the official PyTorch implementation of the Attribute2Font: Creating Fonts You Want From Attributes.
 
-[Research Gate](https://www.researchgate.net/publication/341423467_Attribute2Font_Creating_Fonts_You_Want_From_Attributes/comments)
-
 ![Teaser](img/teaser.png)
+
+Paper: [arXiv](https://arxiv.org/abs/2005.07865) | [Research Gate](https://www.researchgate.net/publication/341423467_Attribute2Font_Creating_Fonts_You_Want_From_Attributes/comments)   
+Supplementary Material: [link](paper/Siggraph2020_Attr2Font_Supplemental_Material.pdf)   
+Code: [GitHub](https://github.com/hologerry/Attr2Font)   
+
+
 
 ## Abstract
 Font design is now still considered as an exclusive privilege of professional designers, whose creativity is not possessed by existing software systems. Nevertheless, we also notice that most commercial font products are in fact manually designed by following specific requirements on some attributes of glyphs, such as italic, serif, cursive, width, angularity, etc. Inspired by this fact, we propose a novel model, Attribute2Font, to automatically create fonts by synthesizing visually pleasing glyph images according to user-specified attributes and their corresponding values. To the best of our knowledge, our model is the first one in the literature which is capable of generating glyph images in new font styles, instead of retrieving existing fonts, according to given values of specified font attributes. Specifically, Attribute2Font is trained to perform font style transfer between any two fonts conditioned on their attribute values. After training, our model can generate glyph images in accordance with an arbitrary set of font attribute values. Furthermore, a novel unit named Attribute Attention Module is designed to make those generated glyph images better embody the prominent font attributes. Considering that the annotations of font attribute values are extremely expensive to obtain, a semi-supervised learning scheme is also introduced to exploit a large number of unlabeled fonts. Experimental results demonstrate that our model achieves impressive performance on many tasks, such as creating glyph images in new font styles, editing existing fonts, interpolation among different fonts, etc.
@@ -16,14 +20,6 @@ Font design is now still considered as an exclusive privilege of professional de
 ## Demonstration
 ![Demo](img/Attr2Font_demo.gif)
 | This demo is deployed on CPU, so it seems to be slow to inference.
-
-
-## Results
-Comparison of StarGAN and StarGAN+AAM on CelebA. (We put these results here due to license issue)
-
-![some](img/stargan_aam.png)
-
-![more](img/sm_stargan_aam.png)
 
 ## Prerequisites
 
