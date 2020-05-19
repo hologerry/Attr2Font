@@ -1,7 +1,7 @@
 # Attr2Font
 ## Introduction
 
-This is the official PyTorch implementation of the Attribute2Font: Creating Fonts You Want From Attributes.
+This is the official PyTorch implementation of the **Attribute2Font: Creating Fonts You Want From Attributes**.
 
 ![Teaser](img/teaser.png)
 
