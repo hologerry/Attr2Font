@@ -18,8 +18,7 @@ Font design is now still considered as an exclusive privilege of professional de
 ![Architecture](img/att_arch.png)
 
 ## Demonstration
-![Demo](img/Attr2Font_demo.gif)
-| This demo is deployed on CPU, so it seems to be slow to inference.
+![Demo](img/att2font_demo.gif)
 
 ## Prerequisites
 
@@ -34,7 +33,7 @@ Font design is now still considered as an exclusive privilege of professional de
 1. Install PyTorch, torchvison and dependencies from [https://pytorch.org](https://pytorch.org)
 2. Clone this repo:
    ```shell
-   git clone -b master --single-branch https://github.com/hologerry/Attr2Font
+   git clone https://github.com/hologerry/Attr2Font
    cd Attr2Font
    ```
 3. Download the official pre-trained vgg19 model: [vgg19-dcbb9e9d.pth](https://download.pytorch.org/models/vgg19-dcbb9e9d.pth), and put it under this project root folder
@@ -42,7 +41,7 @@ Font design is now still considered as an exclusive privilege of professional de
 
 ### Datasets
 
-Download the dataset from [PKU Disk](https://disk.pku.edu.cn:443/link/984852AA48580C84B1A63467390DAB69), [Google Drive](https://drive.google.com/open?id=1P2DbNbVw4Q__WcV1YdzE7zsDKilmd3pO) or [Mega](https://mega.nz/file/zoYmyIxZ#1DqZjgu21AAJ1nenruYQPo2cS0Xjw4dINAjj3iTmfr8) and put it into the `data/`:
+Download the dataset from [PKU Disk](https://disk.pku.edu.cn:443/link/984852AA48580C84B1A63467390DAB69), [Google Drive](https://drive.google.com/open?id=1P2DbNbVw4Q__WcV1YdzE7zsDKilmd3pO) or [MEGA](https://mega.nz/file/zoYmyIxZ#1DqZjgu21AAJ1nenruYQPo2cS0Xjw4dINAjj3iTmfr8) and put it into the `data/`:
 ```
 data/
     explor_all/
