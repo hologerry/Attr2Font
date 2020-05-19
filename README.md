@@ -7,6 +7,7 @@ This is the official PyTorch implementation of the Attribute2Font: Creating Font
 
 Paper: [arXiv](https://arxiv.org/abs/2005.07865) | [Research Gate](https://www.researchgate.net/publication/341423467_Attribute2Font_Creating_Fonts_You_Want_From_Attributes/comments)   
 Supplementary Material: [link](paper/Siggraph2020_Attr2Font_Supplemental_Material.pdf)   
+Video: [link](img/att2font_demo.mov)   
 Code: [GitHub](https://github.com/hologerry/Attr2Font)   
 
 
