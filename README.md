@@ -74,11 +74,16 @@ python main.py --phase test_interp --test_epoch EPOCH
 
 If you use this code or find our work is helpful, please consider citing our work:
 ```
-@article{WangSIGGRAPH2020, 
-  author = {Yizhi Wang*, Yue Gao*, Zhouhui Lian}, 
-  title = {Attribute2Font: Creating Fonts You Want From Attributes}, 
+@article{WangSIGGRAPH2020,
+  author = {Yizhi Wang*, Yue Gao*, Zhouhui Lian},
+  title = {Attribute2Font: Creating Fonts You Want From Attributes},
   journal = {ACM Trans. Graph.},
   year = {2020}
-} 
+}
 ```
 | * Denotes equal contribution
+
+
+## Copyright
+
+The code and dataset are only allowed for PERSONAL and ACADEMIC usage.
